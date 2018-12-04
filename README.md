@@ -115,5 +115,5 @@ F=G+H
 有了图Graph的概念和Openlist以及Closelist后,我们就可以通过搜索的方式进行路径规划了.
 ```mermaid
 graph TD
-id1[1]
+id1[ooo]
 ```
