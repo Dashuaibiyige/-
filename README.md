@@ -82,5 +82,24 @@ void initGraph(const int map[Height][Width], int sx, int sy, int dx, int dy)
 }
 ```
 这样以来,我们可以完全抛弃之前的地图的概念,不去考虑地图几何特征,也可以抛开距离长度等要素,而是直接对图Graph进行操作.
-## Openlists和Closelists
-A* 算法是一种基于搜索的路径规划算法,在进行搜索的时候,我们期望有一个"域"来限定我们的搜索范围,以免工作量过大限制效率,也就是说我们希望知道哪些节点是有必要搜索的,哪些节点是不需要搜索而直接忽略的.
+## Openlist和Closelist
+A* 算法是一种基于搜索的路径规划算法,在进行搜索的时候,我们期望有一个"域"来限定我们的搜索范围,以免工作量过大限制效率,也就是说我们希望知道哪些节点是有必要搜索的,哪些节点是不需要搜索而直接忽略的.所以在A* 算法中定义了Openlist来限定需要搜索的节点范围,定义了Closelist用来忽略不需要处理的节点,也就是说,我们每检查一个节点,这个节点必然是在Openlist中而当一个节点在Closelist中时,我们可以跳过检查的步骤,而去考虑其他节点.当然Openlist和Closelist是持续修订的,当我们进入一个区域的时候,会加入应该被搜索的节点到Openlist中,而我们检查过的节点则应该放到Closelist中.
+* A* 中这样定义的Openlist
+```c++
+typedef struct //优先队列（Open表）
+{
+    int length;        //当前队列的长度
+    Close* Array[MaxLength];    //评价结点的指针
+} Open;
+```
+* Closelist的定义为
+```c++
+typedef struct Close
+{
+    MapNode *cur;
+    char vis;
+    struct Close *from;
+    float F, G;
+    int H;
+} Close;
+```
