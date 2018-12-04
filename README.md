@@ -81,3 +81,5 @@ void initGraph(const int map[Height][Width], int sx, int sy, int dx, int dy)
     }
 }
 ```
+这样以来,我们可以完全抛弃之前的地图的概念,不去考虑地图几何特征,也可以抛开距离长度等要素,而是直接对图Graph进行操作.
+## Openlists和Closelists
