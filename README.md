@@ -18,6 +18,7 @@ typedef struct
 static MapNode graph[Height][Width];
 ```
 各节点之间的连接关系是通过每个节点的可达性(reachable)表示的.
+* 将地图Map表示成图Graph的形式通过以下代码实现
 
 ```c++
 void initGraph(const int map[Height][Width], int sx, int sy, int dx, int dy)
