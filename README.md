@@ -4,6 +4,21 @@
 
 这里说到的图是graph,而不是map,图(graph)是由一系列的节点和连接节点的边来描述的一种模型.我们使用graph来描述代价地图的时候,只需要把地图中的位置转化为graph中的节点,用连接关系代表位置之间的可到达性,这样以来,在进行A* 算法的时候就可以直接对图(graph)进行操作,而完全抛弃原来的几何地图.
 在A* 算法的实现中,是这样将地图(map)转化成图(graph)的:
+* 首先,定义节点
+```c++
+typedef struct
+{
+    int x, y;
+    unsigned char reachable, sur, value;
+} MapNode;
+```
+节点中包括该点在地图中的坐标(x,y),地图到相邻点的可到达性(reachable),在代价地图中是否被占用(value).
+* 定义图graph
+```c++
+static MapNode graph[Height][Width];
+```
+各节点之间的连接关系是通过每个节点的可达性(reachable)表示的.
+
 ```c++
 void initGraph(const int map[Height][Width], int sx, int sy, int dx, int dy)
 {    //地图发生变化时重新构造地
